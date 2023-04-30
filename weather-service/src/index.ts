@@ -23,9 +23,7 @@ export function initialize(api: string, url: string) {
   weatherUrl = url;
 }
 
-export function getWeatherUrl(
-  params: WeatherUrlParams
-): string | { status: "error"; message: string } {
+export function getWeatherUrl(params: WeatherUrlParams): string | Result {
   if (!weatherUrl || !weatherApi) {
     return {
       status: "error",
@@ -47,17 +45,36 @@ export async function getWeatherByCityName(
   cityName: string,
   unit: Unit = "metric"
 ): Promise<Result> {
-  const requestUrl = getWeatherUrl({
+  const result = getWeatherUrl({
     type: "city",
     city: cityName,
     unit,
   });
 
-  if (typeof requestUrl !== "string") {
-    return requestUrl;
+  if (typeof result !== "string") {
+    return result;
   }
 
-  return fetchWeather(requestUrl);
+  return fetchWeather(result);
+}
+
+export async function getWeatherByLatLng(
+  lat: number,
+  lng: number,
+  unit: Unit = "metric"
+): Promise<Result> {
+  const result = getWeatherUrl({
+    type: "coordinate",
+    lat,
+    lng,
+    unit,
+  });
+
+  if (typeof result !== "string") {
+    return result;
+  }
+
+  return fetchWeather(result);
 }
 
 async function fetchWeather(requestUrl: string): Promise<Result> {
@@ -65,7 +82,7 @@ async function fetchWeather(requestUrl: string): Promise<Result> {
   try {
     const response = await fetch(requestUrl);
     if (!response.ok) {
-      result = {
+      return {
         status: "error",
         message: `Service error: ${response.status} ${response.statusText}`,
       };

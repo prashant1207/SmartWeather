@@ -1,5 +1,10 @@
 import exp from "constants";
-import { initialize, getWeatherUrl, getWeatherByCityName } from ".";
+import {
+  initialize,
+  getWeatherUrl,
+  getWeatherByCityName,
+  getWeatherByLatLng,
+} from ".";
 
 const mockWeatherApi = "mockWeatherApi";
 const mockWeatherUrl = "https://mockWeatherUrl.com";
@@ -35,12 +40,29 @@ const mockSuccessResponse: Response = {
   headers: {} as any,
 };
 
+const mockErrorResponse: Response = {
+  ...mockSuccessResponse,
+  ok: false,
+  status: 500,
+  statusText: "Internal Server Error",
+};
+
 const standardFetch = global.fetch;
 global.fetch = jest.fn(
   () => new Promise<Response>((resolve) => resolve(mockSuccessResponse))
 );
 
-describe("Weather Service", () => {
+describe("Weather Service without initialization", () => {
+  test("fails to fetch weather data by city name", async () => {
+    const result = await getWeatherByCityName("London");
+    expect(result).toEqual({
+      status: "error",
+      message: "Weather service is not initialized",
+    });
+  });
+});
+
+describe("Weather Service with initialization", () => {
   beforeAll(() => {
     initialize(mockWeatherApi, mockWeatherUrl);
   });
@@ -101,5 +123,24 @@ describe("Weather Service", () => {
     const result = await getWeatherByCityName("London");
     expect(global.fetch).toBeCalled();
     expect(result).toEqual({ status: "success", data: mockData });
+  });
+
+  test("fetches weather data by lat lng", async () => {
+    const result = await getWeatherByLatLng(51.5074, 0.1278);
+    expect(global.fetch).toBeCalled();
+    expect(result).toEqual({ status: "success", data: mockData });
+  });
+
+  test("Returns error on failed response", async () => {
+    global.fetch = jest.fn(
+      () => new Promise<Response>((resolve) => resolve(mockErrorResponse))
+    );
+
+    const result = await getWeatherByCityName("London");
+    expect(global.fetch).toBeCalled();
+    expect(result).toEqual({
+      status: "error",
+      message: "Service error: 500 Internal Server Error",
+    });
   });
 });
