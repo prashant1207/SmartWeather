@@ -10,7 +10,7 @@ type AppLocation = {
   refresh: () => void;
 };
 
-export const AppLocationContext = React.createContext<AppLocation>({
+const AppLocationContext = React.createContext<AppLocation>({
   authorized: false,
   refresh: () => {},
 });

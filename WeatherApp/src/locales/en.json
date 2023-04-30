@@ -6,5 +6,8 @@
   "authorize": "Authorize",
   "myLocation": "My Location",
   "error": "Error",
-  "remove": "Remove"
+  "remove": "Remove",
+  "cityName": "City Name",
+  "addCityDesc": "Enter name of city which you want to get weather information",
+  "addCity": "Add City to Favorites"
 }

@@ -8,6 +8,7 @@ import {AppLocationProvider} from '@src/context/AppLocation';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import {API_URL, API_KEY} from '@env';
 import {initialize} from 'weather-service';
+import {ConfigProvider} from '@src/context/ConfigContext';
 
 initialize(API_KEY, API_URL);
 
@@ -26,11 +27,13 @@ function RootNavigation(): React.ReactElement {
 function App(): JSX.Element {
   return (
     <QueryClientProvider client={queryClient}>
-      <AppLocationProvider>
-        <NavigationContainer>
-          <RootNavigation />
-        </NavigationContainer>
-      </AppLocationProvider>
+      <ConfigProvider>
+        <AppLocationProvider>
+          <NavigationContainer>
+            <RootNavigation />
+          </NavigationContainer>
+        </AppLocationProvider>
+      </ConfigProvider>
     </QueryClientProvider>
   );
 }

@@ -45,7 +45,9 @@ React Native App for showing weather information with following features:
 - [x] Add weather-service
   - Added `react-native-dotenv` to store and read APIKey and APIUrl from `.env` file.
   - Used `react-query` to create query for fetch weather information with cache support.
-- [ ] Add react-query
+- [x] Add support for custom city
+  - Added ConfigContext which will hold the cities and other configurations such as Units.
+- [x] Add react-query
 - [x] Add Detox
   - Added dev dependency
   - `detox init`

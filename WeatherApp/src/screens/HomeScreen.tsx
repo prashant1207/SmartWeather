@@ -1,7 +1,9 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {AddCityCard} from '@src/components/AddCityCard';
 import {LocationPermission} from '@src/components/LocationPermission';
 import {LocationWeather} from '@src/components/LocationWeather';
 import {useAppLocation} from '@src/context/AppLocation';
+import {useConfig} from '@src/context/ConfigContext';
 import {City} from '@src/types/City';
 import {StackParamList} from '@src/types/StackParamList';
 import React from 'react';
@@ -12,14 +14,23 @@ export function HomeScreen({}: NativeStackScreenProps<
   'Home'
 >): JSX.Element {
   const [items, setItems] = React.useState<City[]>([]);
+  const {cities} = useConfig();
   const {authorized, location} = useAppLocation();
 
   const renderItem = ({item}: {item: City}) => (
     <LocationWeather city={item} onPress={() => {}} />
   );
 
+  const renderFooter = () => <AddCityCard />;
+
   React.useEffect(() => {
-    const cityList: City[] = [];
+    const cityList: City[] = cities.map(item => {
+      return {
+        type: 'city',
+        name: item,
+        id: item,
+      };
+    });
 
     if (location && typeof location !== 'string') {
       cityList.push({
@@ -30,11 +41,16 @@ export function HomeScreen({}: NativeStackScreenProps<
     }
 
     setItems(cityList);
-  }, [authorized, location]);
+  }, [authorized, location, cities]);
   return (
     <View style={styles.container}>
       <LocationPermission authorized={authorized} />
-      <FlatList testID="location-list" data={items} renderItem={renderItem} />
+      <FlatList
+        testID="location-list"
+        data={items}
+        renderItem={renderItem}
+        ListFooterComponent={renderFooter}
+      />
     </View>
   );
 }
