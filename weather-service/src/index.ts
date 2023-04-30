@@ -1,14 +1,7 @@
 import { Result, Weather, Unit } from "./types";
 
-export { Result, Weather };
-
 let weatherApi: string | undefined = undefined;
 let weatherUrl: string | undefined = undefined;
-
-export function initialize(api: string, url: string) {
-  weatherApi = api;
-  weatherUrl = url;
-}
 
 type WeatherUrlParams = (
   | {
@@ -24,9 +17,20 @@ type WeatherUrlParams = (
   unit: Unit;
 };
 
-export function getWeatherUrl(params: WeatherUrlParams): string {
+export { Result, Weather };
+export function initialize(api: string, url: string) {
+  weatherApi = api;
+  weatherUrl = url;
+}
+
+export function getWeatherUrl(
+  params: WeatherUrlParams
+): string | { status: "error"; message: string } {
   if (!weatherUrl || !weatherApi) {
-    throw new Error("Weather Service is not initialized");
+    return {
+      status: "error",
+      message: "Weather service is not initialized",
+    };
   }
   const { type, unit } = params;
 
@@ -37,4 +41,41 @@ export function getWeatherUrl(params: WeatherUrlParams): string {
     const { city } = params;
     return `${weatherUrl}?q=${city}&units=${unit}&appid=${weatherApi}`;
   }
+}
+
+export async function getWeatherByCityName(
+  cityName: string,
+  unit: Unit = "metric"
+): Promise<Result> {
+  const requestUrl = getWeatherUrl({
+    type: "city",
+    city: cityName,
+    unit,
+  });
+
+  if (typeof requestUrl !== "string") {
+    return requestUrl;
+  }
+
+  return fetchWeather(requestUrl);
+}
+
+async function fetchWeather(requestUrl: string): Promise<Result> {
+  let result: Result = { status: "loading" };
+  try {
+    const response = await fetch(requestUrl);
+    if (!response.ok) {
+      result = {
+        status: "error",
+        message: `Service error: ${response.status} ${response.statusText}`,
+      };
+    }
+
+    const data = (await response.json()) as Weather;
+    result = { status: "success", data };
+  } catch (error) {
+    result = { status: "error", message: "Service error" };
+  }
+
+  return result;
 }

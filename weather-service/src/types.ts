@@ -1,4 +1,5 @@
 export type Result =
+  | { status: "loading" }
   | {
       status: "error";
       message: string;
