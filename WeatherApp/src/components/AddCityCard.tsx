@@ -37,10 +37,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     padding: 16,
-    borderColor: Colors.border,
     borderWidth: 1,
     borderRadius: 8,
     marginHorizontal: 16,
+    backgroundColor: Colors.containerBackground,
   },
   text: {
     textAlign: 'center',

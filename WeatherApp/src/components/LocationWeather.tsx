@@ -43,6 +43,7 @@ export function LocationWeather({
   if (result && result.status === 'success') {
     const {data} = result;
     const weather = data.weather.length > 0 ? data.weather[0] : null;
+
     return (
       <TouchableOpacity style={styles.container} onPress={handler}>
         <CityText city={city} />
@@ -61,7 +62,7 @@ export function LocationWeather({
     return (
       <View style={styles.container}>
         <CityText city={city} />
-        <Text>Loading</Text>
+        <Text style={styles.text}>Loading</Text>
       </View>
     );
   }
@@ -70,7 +71,7 @@ export function LocationWeather({
     <View style={styles.container}>
       <CityText city={city} />
       <View>
-        <Text>{translations.error}</Text>
+        <Text style={styles.text}>{translations.error}</Text>
         <TouchableOpacity style={styles.removeButton} onPress={removeHandler}>
           <Text style={styles.removeText}>{translations.remove}</Text>
         </TouchableOpacity>
@@ -123,5 +124,8 @@ const styles = StyleSheet.create({
     color: Colors.text,
     fontSize: 12,
     fontWeight: '300',
+  },
+  text: {
+    color: Colors.text,
   },
 });

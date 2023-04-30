@@ -7,7 +7,7 @@ import {Colors} from '@src/styles/Colors';
 import {StackParamList} from '@src/types/StackParamList';
 import {makeInfoBlocks} from '@src/utils/utils';
 import React from 'react';
-import {View, FlatList, StyleSheet} from 'react-native';
+import {FlatList, StyleSheet, SafeAreaView} from 'react-native';
 
 export function DetailScreen({
   route,
@@ -23,21 +23,21 @@ export function DetailScreen({
   const renderHeader = () => <WeatherDetailHeader weather={weather} />;
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <FlatList
         data={data}
         renderItem={renderItem}
         ListFooterComponent={renderFooter}
         ListHeaderComponent={renderHeader}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.secondary,
   },
 });
 

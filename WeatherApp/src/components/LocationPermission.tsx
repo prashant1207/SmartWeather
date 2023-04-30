@@ -1,6 +1,7 @@
 import Geolocation from '@react-native-community/geolocation';
 import {useAppLocation} from '@src/context/AppLocation';
 import {getTranslation} from '@src/services/i18n';
+import {Colors} from '@src/styles/Colors';
 import React from 'react';
 import {Text, StyleSheet, View, Button} from 'react-native';
 
@@ -76,9 +77,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 16,
+    marginHorizontal: 16,
+    backgroundColor: Colors.containerBackground,
   },
   text: {
     textAlign: 'center',
+    color: Colors.text,
   },
   errorText: {
     paddingVertical: 8,

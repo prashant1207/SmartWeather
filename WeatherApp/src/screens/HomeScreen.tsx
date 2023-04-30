@@ -4,10 +4,18 @@ import {LocationPermission} from '@src/components/LocationPermission';
 import {LocationWeather} from '@src/components/LocationWeather';
 import {useAppLocation} from '@src/context/AppLocation';
 import {useConfig} from '@src/context/ConfigContext';
+import {Colors} from '@src/styles/Colors';
 import {City} from '@src/types/City';
 import {StackParamList} from '@src/types/StackParamList';
 import React from 'react';
-import {Text, View, StyleSheet, Switch, FlatList} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  Switch,
+  FlatList,
+  SafeAreaView,
+} from 'react-native';
 import {Weather} from 'weather-service';
 
 export function HomeScreen({
@@ -49,7 +57,7 @@ export function HomeScreen({
     setItems(cityList);
   }, [authorized, location, cities]);
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <UnitSwitcher />
       <LocationPermission authorized={authorized} />
       <FlatList
@@ -58,7 +66,7 @@ export function HomeScreen({
         renderItem={renderItem}
         ListFooterComponent={renderFooter}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -107,6 +115,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    backgroundColor: Colors.primary,
   },
   title: {
     fontSize: 24,
