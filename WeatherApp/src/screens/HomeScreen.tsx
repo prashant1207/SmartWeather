@@ -1,17 +1,15 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {LocationPermission} from '@src/components/LocationPermission';
 import {StackParamList} from '@src/types/StackParamList';
 import React from 'react';
-import {View, StyleSheet, Text, Button} from 'react-native';
+import {View, StyleSheet, Button} from 'react-native';
 
 export function HomeScreen({
   navigation,
 }: NativeStackScreenProps<StackParamList, 'Home'>): JSX.Element {
   return (
     <View style={styles.container}>
-      <Text testID="title-text" style={styles.title}>
-        Welcome to SmartWeather!
-      </Text>
-      <Text style={styles.subtitle}>Get latest weather information</Text>
+      <LocationPermission authorized={false} />
       <Button
         title="Go to Detail"
         onPress={() => {
@@ -25,8 +23,7 @@ export function HomeScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 16,
   },
   title: {
     fontSize: 24,

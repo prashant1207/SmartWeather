@@ -4,6 +4,7 @@ import {StackParamList} from '@src/types/StackParamList';
 import HomeScreen from '@src/screens/HomeScreen';
 import DetailScreen from '@src/screens/DetailScreen';
 import {NavigationContainer} from '@react-navigation/native';
+import {AppLocationProvider} from '@src/context/AppLocation';
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
@@ -18,9 +19,11 @@ function RootNavigation(): React.ReactElement {
 
 function App(): JSX.Element {
   return (
-    <NavigationContainer>
-      <RootNavigation />
-    </NavigationContainer>
+    <AppLocationProvider>
+      <NavigationContainer>
+        <RootNavigation />
+      </NavigationContainer>
+    </AppLocationProvider>
   );
 }
 
