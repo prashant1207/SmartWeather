@@ -1,3 +1,4 @@
+import {useConfig} from '@src/context/ConfigContext';
 import {fetchWeatherByCity} from '@src/query/fetchWeatherByCity';
 import {fetchWeatherByLatLng} from '@src/query/fetchWeatherByLatLng';
 import {getTranslation} from '@src/services/i18n';
@@ -9,8 +10,6 @@ import {useQuery} from 'react-query';
 import {Weather} from 'weather-service/src/types';
 
 const translations = getTranslation();
-const unit = 'metric';
-const temperatureUnit = unit === 'metric' ? '°C' : '°F';
 
 export function LocationWeather({
   city,
@@ -18,6 +17,9 @@ export function LocationWeather({
   city: City;
   onPress: (weather: Weather, city: City) => void;
 }): React.ReactElement {
+  const {removeCity, settings} = useConfig();
+  const {unit, temperatureUnit} = settings;
+
   const resolver =
     city.type === 'city'
       ? () => fetchWeatherByCity({cityName: city.name, unit})
@@ -29,7 +31,11 @@ export function LocationWeather({
   );
 
   const handler = React.useCallback(() => {}, []);
-  const removeHandler = React.useCallback(() => {}, []);
+  const removeHandler = React.useCallback(() => {
+    if (city.type === 'city') {
+      removeCity(city.name);
+    }
+  }, [removeCity, city]);
 
   if (result && result.status === 'success') {
     const {data} = result;

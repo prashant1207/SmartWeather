@@ -1,5 +1,6 @@
 export type Settings = {
   unit: 'metric' | 'imperial';
+  temperatureUnit: '°C' | '°F';
 };
 
 export type Config = {

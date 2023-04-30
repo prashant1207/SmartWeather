@@ -5,6 +5,7 @@ const ConfigContext = React.createContext<Config>({
   cities: [],
   settings: {
     unit: 'metric',
+    temperatureUnit: '°C',
   },
   addCity: (_city: string) => {},
   removeCity: (_city: string) => {},
@@ -18,6 +19,7 @@ export function ConfigProvider({
   const [cities, setCities] = React.useState<string[]>([]);
   const [config] = React.useState<Settings>({
     unit: 'metric',
+    temperatureUnit: '°C',
   });
 
   function addCity(city: string) {
