@@ -47,6 +47,7 @@ React Native App for showing weather information with following features:
   - Used `react-query` to create query for fetch weather information with cache support.
 - [x] Add support for custom city
   - Added ConfigContext which will hold the cities and other configurations such as Units.
+  - Used `@react-native-async-storage/async-storage` for local storage and provide persistent storage.
 - [x] Add react-query
 - [x] Add Detox
   - Added dev dependency
