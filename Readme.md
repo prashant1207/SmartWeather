@@ -39,6 +39,9 @@ React Native App for showing weather information with following features:
   - Path `@src` notation using `babel-plugin-module-resolver` to avoid using relative paths.
   - Setup Stack Navigation at `App.tsx`.
   - Implemented basic navigation between `HomeScreen` and `DetailScreen`.
+- [ ] Geolocation Authorization
+  - Using `@react-native-community/geolocation`
+  - Implemented a NativeModule to get location permission status.
 - [ ] Add weather-service
 - [ ] Add react-query
 - [x] Add Detox
