@@ -6,22 +6,25 @@ const translations = getTranslation();
 export const cityRegex =
   /^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/;
 
-export function makeInfoBlocks(weather: Weather): InfoBlockProp[] {
+export function makeInfoBlocks(
+  weather: Weather,
+  temperatureUnit: string,
+): InfoBlockProp[] {
   const {main} = weather;
   const result: InfoBlockProp[] = [
     {
       text: translations.feelsLike,
-      value: `${Math.round(main.feels_like)}°`,
+      value: `${Math.round(main.feels_like)}${temperatureUnit}`,
       description: translations.feelsLikeTemperature,
     },
     {
       text: translations.min,
-      value: `${Math.round(main.temp_min)}°`,
+      value: `${Math.round(main.temp_min)}${temperatureUnit}`,
       description: translations.minTemperature,
     },
     {
       text: translations.max,
-      value: `${Math.round(main.temp_max)}°`,
+      value: `${Math.round(main.temp_max)}${temperatureUnit}`,
       description: translations.maxTemperature,
     },
     {
