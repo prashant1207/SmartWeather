@@ -26,10 +26,7 @@ export function LocationWeather({
       ? () => fetchWeatherByCity({cityName: city.name, unit})
       : () => fetchWeatherByLatLng({location: city.location, unit});
 
-  const {data: result, isLoading} = useQuery(
-    ['city', city.id, 'metric'],
-    resolver,
-  );
+  const {data: result, isLoading} = useQuery(['city', city.id, unit], resolver);
 
   const handler = React.useCallback(() => {
     if (result && result.status === 'success') {
@@ -102,6 +99,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 16,
+    marginHorizontal: 16,
     backgroundColor: Colors.containerBackground,
   },
   removeButton: {

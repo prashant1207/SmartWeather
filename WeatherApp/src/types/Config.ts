@@ -8,4 +8,5 @@ export type Config = {
   settings: Settings;
   addCity: (city: string) => void;
   removeCity: (city: string) => void;
+  updateSetting: (settings: Settings) => void;
 };

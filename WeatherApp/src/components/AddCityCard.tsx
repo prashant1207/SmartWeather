@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     borderColor: Colors.border,
     borderWidth: 1,
     borderRadius: 8,
-    marginBottom: 16,
+    marginHorizontal: 16,
   },
   text: {
     textAlign: 'center',

@@ -10,6 +10,7 @@ const ConfigContext = React.createContext<Config>({
   },
   addCity: (_city: string) => {},
   removeCity: (_city: string) => {},
+  updateSetting: (_settings: Settings) => {},
 });
 
 export function ConfigProvider({
@@ -18,7 +19,7 @@ export function ConfigProvider({
   children: React.ReactNode;
 }): JSX.Element {
   const [cities, setCities] = React.useState<string[]>([]);
-  const [config] = React.useState<Settings>({
+  const [config, setConfig] = React.useState<Settings>({
     unit: 'metric',
     temperatureUnit: '°C',
   });
@@ -49,9 +50,13 @@ export function ConfigProvider({
     storeCities(updatedCities);
   }
 
+  function updateSetting(settings: Settings) {
+    setConfig(settings);
+  }
+
   return (
     <ConfigContext.Provider
-      value={{cities, settings: config, addCity, removeCity}}>
+      value={{cities, settings: config, addCity, removeCity, updateSetting}}>
       {children}
     </ConfigContext.Provider>
   );
