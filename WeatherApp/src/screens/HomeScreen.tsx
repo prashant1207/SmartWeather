@@ -8,7 +8,9 @@ export function HomeScreen({
 }: NativeStackScreenProps<StackParamList, 'Home'>): JSX.Element {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome to SmartWeather!</Text>
+      <Text testID="title-text" style={styles.title}>
+        Welcome to SmartWeather!
+      </Text>
       <Text style={styles.subtitle}>Get latest weather information</Text>
       <Button
         title="Go to Detail"

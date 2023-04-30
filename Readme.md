@@ -41,5 +41,10 @@ React Native App for showing weather information with following features:
   - Implemented basic navigation between `HomeScreen` and `DetailScreen`.
 - [ ] Add weather-service
 - [ ] Add react-query
-- [ ] Add Detox
+- [x] Add Detox
+  - Added dev dependency
+  - `detox init`
+  - Updated "AppName" in `.detoxrc.js`
+  - Updated `testID`.
+  - Added a base test in `/e2e/homescreen.test.js`
 - [ ] Implement Weather Information Screens [TBD]
