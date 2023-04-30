@@ -6,6 +6,12 @@
   "author": "Prashant Tiwari",
   "license": "Restricted",
   "private": true,
+  "scripts": {
+    "clean": "rimraf lib",
+    "prebuild": "yarn clean",
+    "build": "tsc",
+    "test": "jest"
+  },
   "devDependencies": {
     "@types/jest": "^29.5.1",
     "@types/node": "^18.16.3",
