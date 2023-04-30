@@ -1,4 +1,5 @@
 import React from 'react';
+import {getCities, storeCities} from '@src/services/storage';
 import {Config, Settings} from '@src/types/Config';
 
 const ConfigContext = React.createContext<Config>({
@@ -22,17 +23,30 @@ export function ConfigProvider({
     temperatureUnit: '°C',
   });
 
+  React.useEffect(() => {
+    initialize();
+  }, []);
+
+  async function initialize() {
+    const storedCities = await getCities();
+    if (storedCities) {
+      setCities(storedCities);
+    }
+  }
+
   function addCity(city: string) {
     city = city.toLowerCase();
     if (!cities.includes(city)) {
       const updatedCities = [...cities, city];
       setCities(updatedCities);
+      storeCities(updatedCities);
     }
   }
 
   function removeCity(city: string) {
     const updatedCities = cities.filter(c => c !== city.toLocaleLowerCase());
     setCities(updatedCities);
+    storeCities(updatedCities);
   }
 
   return (
