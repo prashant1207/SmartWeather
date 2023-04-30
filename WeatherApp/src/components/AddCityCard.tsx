@@ -6,7 +6,7 @@ import React from 'react';
 import {Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 
 const translations = getTranslation();
-export function AddCityCard(): React.ReactElement {
+export function AddCityCard(): JSX.Element {
   const {addCity} = useConfig();
   const onPressHandler = React.useCallback(() => {
     Alert.prompt(

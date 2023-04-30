@@ -19,7 +19,7 @@ export function AppLocationProvider({
   children,
 }: {
   children: React.ReactNode;
-}): React.ReactElement {
+}): JSX.Element {
   const [authorized, setAuthorized] = React.useState<boolean>(false);
   const [location, setLocation] = React.useState<Location | undefined>();
   const [error, setError] = React.useState<string | undefined>(undefined);

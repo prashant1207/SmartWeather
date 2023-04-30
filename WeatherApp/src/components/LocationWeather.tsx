@@ -17,7 +17,7 @@ export function LocationWeather({
 }: {
   city: City;
   onPress: (weather: Weather, city: City) => void;
-}): React.ReactElement {
+}): JSX.Element {
   const {removeCity, settings} = useConfig();
   const {unit, temperatureUnit} = settings;
 

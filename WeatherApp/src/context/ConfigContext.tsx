@@ -15,7 +15,7 @@ export function ConfigProvider({
   children,
 }: {
   children: React.ReactNode;
-}): React.ReactElement {
+}): JSX.Element {
   const [cities, setCities] = React.useState<string[]>([]);
   const [config] = React.useState<Settings>({
     unit: 'metric',

@@ -8,7 +8,7 @@ export type InfoBlockProp = {
   description: string;
 };
 
-export function InfoBlock({model}: {model: InfoBlockProp}): React.ReactElement {
+export function InfoBlock({model}: {model: InfoBlockProp}): JSX.Element {
   const {text, value, description} = model;
   return (
     <View style={styles.container}>

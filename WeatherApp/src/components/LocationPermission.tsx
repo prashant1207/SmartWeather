@@ -9,7 +9,7 @@ export function LocationPermission({
   authorized,
 }: {
   authorized: boolean;
-}): React.ReactElement | null {
+}): JSX.Element | null {
   const [errorText, setErrorText] = React.useState<string | undefined>(
     undefined,
   );

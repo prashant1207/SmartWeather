@@ -15,7 +15,7 @@ initialize(API_KEY, API_URL);
 const Stack = createNativeStackNavigator<StackParamList>();
 const queryClient = new QueryClient();
 
-function RootNavigation(): React.ReactElement {
+function RootNavigation(): JSX.Element {
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen name="Home" component={HomeScreen} />
