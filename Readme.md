@@ -18,4 +18,4 @@ React Native App for showing weather information with following features:
   - Can be maintained and update separately from the actual WeatherApp.
 
 - `WeatherApp`
- - React Native App for showing weather information
+  - React Native App for showing weather information.
