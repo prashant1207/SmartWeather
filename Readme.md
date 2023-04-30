@@ -42,7 +42,9 @@ React Native App for showing weather information with following features:
 - [ ] Geolocation Authorization
   - Using `@react-native-community/geolocation`
   - Implemented a NativeModule to get location permission status.
-- [ ] Add weather-service
+- [x] Add weather-service
+  - Added `react-native-dotenv` to store and read APIKey and APIUrl from `.env` file.
+  - Used `react-query` to create query for fetch weather information with cache support.
 - [ ] Add react-query
 - [x] Add Detox
   - Added dev dependency
