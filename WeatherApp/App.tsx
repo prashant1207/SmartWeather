@@ -1,19 +1,27 @@
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import {StackParamList} from '@src/types/StackParamList';
+import HomeScreen from '@src/screens/HomeScreen';
+import DetailScreen from '@src/screens/DetailScreen';
+import {NavigationContainer} from '@react-navigation/native';
 
-export function App(): JSX.Element {
+const Stack = createNativeStackNavigator<StackParamList>();
+
+function RootNavigation(): React.ReactElement {
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>Weather App</Text>
-    </SafeAreaView>
+    <Stack.Navigator initialRouteName="Home">
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Detail" component={DetailScreen} />
+    </Stack.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
+function App(): JSX.Element {
+  return (
+    <NavigationContainer>
+      <RootNavigation />
+    </NavigationContainer>
+  );
+}
 
 export default App;
