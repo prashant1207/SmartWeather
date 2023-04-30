@@ -3,5 +3,8 @@
   "authorizeLocation": "Authorize location to get weather data for your current location",
   "gotoSettingsToEnableLocation": "Go to settings and enable location access for this app",
   "retry": "Retry",
-  "authorize": "Authorize"
+  "authorize": "Authorize",
+  "myLocation": "My Location",
+  "error": "Error",
+  "remove": "Remove"
 }
