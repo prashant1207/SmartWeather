@@ -23,13 +23,18 @@ React Native App for showing weather information with following features:
 ## Checkpoint
 
 ### weather-service package
+
 - [x] Setup package
 - [x] Implement function to initialize and construct weatherUrl
 - [x] Implement function for getWeatherByCity with UTs
 - [x] Implement function for getWeatherByLatLng with UTs
 
 ### WeatherApp
-- [ ] Create React Native WeatherApp
+
+- [x] Create React Native WeatherApp
+  - Have to use react-native 0.70.0 to have support for Detox, refer https://wix.github.io/Detox/docs/introduction/getting-started/
+  - React Native typescript template version based on: https://github.com/react-native-community/react-native-template-typescript
+  - `npx react-native@0.70.7 init WeatherApp --template react-native-template-typescript@6.12.10`
 - [ ] Add react-navigation
 - [ ] Add weather-service
 - [ ] Add react-query
