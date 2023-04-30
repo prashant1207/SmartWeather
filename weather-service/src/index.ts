@@ -17,7 +17,7 @@ type WeatherUrlParams = (
   unit: Unit;
 };
 
-export { Result, Weather };
+export { Result, Weather, Unit };
 export function initialize(api: string, url: string) {
   weatherApi = api;
   weatherUrl = url;
