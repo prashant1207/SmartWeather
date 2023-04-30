@@ -7,7 +7,7 @@ import {Text, StyleSheet, View, TouchableOpacity} from 'react-native';
 
 const translations = getTranslation();
 
-export function WeatherDetailFooter({city}: {city: City}): React.ReactElement {
+export function WeatherDetailFooter({city}: {city: City}): JSX.Element {
   const {removeCity} = useConfig();
   const navigation = useNavigation();
   const removeHandler = () => {

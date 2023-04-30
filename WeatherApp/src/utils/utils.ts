@@ -42,3 +42,8 @@ export function makeInfoBlocks(weather: Weather): InfoBlockProp[] {
   ];
   return result;
 }
+
+export function timeFromUnixTimestamp(timestamp: number): Date {
+  const date = new Date(timestamp * 1000);
+  return date;
+}

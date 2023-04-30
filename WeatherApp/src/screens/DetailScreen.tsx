@@ -1,6 +1,7 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {InfoBlock, InfoBlockProp} from '@src/components/InfoBlock';
 import {WeatherDetailFooter} from '@src/components/WeatherDetailFooter';
+import {WeatherDetailHeader} from '@src/components/WeatherDetailHeader';
 import {Colors} from '@src/styles/Colors';
 import {StackParamList} from '@src/types/StackParamList';
 import {makeInfoBlocks} from '@src/utils/utils';
@@ -17,6 +18,7 @@ export function DetailScreen({
   );
 
   const renderFooter = () => <WeatherDetailFooter city={city} />;
+  const renderHeader = () => <WeatherDetailHeader weather={weather} />;
 
   return (
     <View style={styles.container}>
@@ -24,6 +26,7 @@ export function DetailScreen({
         data={data}
         renderItem={renderItem}
         ListFooterComponent={renderFooter}
+        ListHeaderComponent={renderHeader}
       />
     </View>
   );
