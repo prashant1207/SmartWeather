@@ -13,6 +13,7 @@ const translations = getTranslation();
 
 export function LocationWeather({
   city,
+  onPress,
 }: {
   city: City;
   onPress: (weather: Weather, city: City) => void;
@@ -30,7 +31,12 @@ export function LocationWeather({
     resolver,
   );
 
-  const handler = React.useCallback(() => {}, []);
+  const handler = React.useCallback(() => {
+    if (result && result.status === 'success') {
+      onPress(result.data, city);
+    }
+  }, [onPress, result, city]);
+
   const removeHandler = React.useCallback(() => {
     if (city.type === 'city') {
       removeCity(city.name);

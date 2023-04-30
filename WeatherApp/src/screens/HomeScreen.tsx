@@ -8,17 +8,23 @@ import {City} from '@src/types/City';
 import {StackParamList} from '@src/types/StackParamList';
 import React from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
+import {Weather} from 'weather-service';
 
-export function HomeScreen({}: NativeStackScreenProps<
-  StackParamList,
-  'Home'
->): JSX.Element {
+export function HomeScreen({
+  navigation,
+}: NativeStackScreenProps<StackParamList, 'Home'>): JSX.Element {
   const [items, setItems] = React.useState<City[]>([]);
   const {cities} = useConfig();
   const {authorized, location} = useAppLocation();
 
+  const onPress = (weather: Weather, city: City) =>
+    navigation.navigate('Detail', {
+      weather,
+      city: city,
+    });
+
   const renderItem = ({item}: {item: City}) => (
-    <LocationWeather city={item} onPress={() => {}} />
+    <LocationWeather city={item} onPress={onPress} />
   );
 
   const renderFooter = () => <AddCityCard />;
