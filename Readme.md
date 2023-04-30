@@ -58,3 +58,6 @@ React Native App for showing weather information with following features:
 - [x] Implement Weather Information Screens
   - Added detail pages with smaller single responsibility components.
   - Design inspiration from https://dribbble.com/shots/20675054-Mobile-Weather-app
+- [x] e2e Tests
+  - Added e2e Tests for Home Page and Detail Page
+  
