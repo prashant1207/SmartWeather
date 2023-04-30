@@ -20,7 +20,16 @@ React Native App for showing weather information with following features:
 - `WeatherApp`
   - React Native App for showing weather information.
 
-## Checkpoint
+## OpenWeather API Key
+
+- You need to add `.env` file at `SmartWeather/WeatherApp` with `API_KEY` and `API_URL` from [OpenWeatherMap](https://openweathermap.org/)
+
+  ```shell
+  API_KEY=<YOUR_API_KEY>
+  API_URL=https://api.openweathermap.org/data/2.5/weather
+  ```
+  
+## Development Checkpoints
 
 ### weather-service package
 
@@ -61,3 +70,12 @@ React Native App for showing weather information with following features:
 - [x] e2e Tests
   - Added e2e Tests for Home Page and Detail Page
   
+
+## Screenshot
+|   |   |   |
+|---|---|---|
+|![Home](screenshot/Home.png)| ![Home](screenshot/Home_2.png)  | ![Home](screenshot/Home_3.png)|
+
+|   |   |
+|---|---|
+|![Home](screenshot/Detail.png)| ![Home](screenshot/Detail_2.png)  |
