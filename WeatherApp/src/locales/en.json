@@ -9,5 +9,19 @@
   "remove": "Remove",
   "cityName": "City Name",
   "addCityDesc": "Enter name of city which you want to get weather information",
-  "addCity": "Add City to Favorites"
+  "addCity": "Add City to Favorites",
+  "sunrise": "Sunrise",
+  "sunset": "Sunset",
+  "feelsLikeTemperature": "Feels like temperature",
+  "windSpeedDesc": "Wind speed in kmph",
+  "humidity": "Humidity",
+  "minTemperature": "Min temperature",
+  "maxTemperature": "Max temperature",
+  "pressure": "Pressure",
+  "feelsLike": "Feels like",
+  "min": "Min",
+  "max": "Max",
+  "windSpeed": "Wind Speed",
+  "removeCity": "Remove City from Favorites",
+  "weatherSource": "Weather information is sourced from OpenWeatherMaps.org"
 }
