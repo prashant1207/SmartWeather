@@ -19,3 +19,19 @@ React Native App for showing weather information with following features:
 
 - `WeatherApp`
   - React Native App for showing weather information.
+
+## Checkpoint
+
+### weather-service package
+- [x] Setup package
+- [x] Implement function to initialize and construct weatherUrl
+- [x] Implement function for getWeatherByCity with UTs
+- [x] Implement function for getWeatherByLatLng with UTs
+
+### WeatherApp
+- [ ] Create React Native WeatherApp
+- [ ] Add react-navigation
+- [ ] Add weather-service
+- [ ] Add react-query
+- [ ] Add Detox
+- [ ] Implement Weather Information Screens [TBD]
