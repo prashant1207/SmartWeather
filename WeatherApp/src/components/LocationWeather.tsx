@@ -47,12 +47,12 @@ export function LocationWeather({
     return (
       <TouchableOpacity style={styles.container} onPress={handler}>
         <CityText city={city} />
-        <View>
+        <View style={styles.weatherInfoContainer}>
+          {weather && <Text style={styles.subtext}>{weather.main}</Text>}
           <Text style={styles.temperatureText}>
             {Math.round(data.main.temp)}
             {temperatureUnit}
           </Text>
-          {weather && <Text style={styles.subtext}>{weather.main}</Text>}
         </View>
       </TouchableOpacity>
     );
@@ -114,15 +114,19 @@ const styles = StyleSheet.create({
     color: Colors.text,
     fontWeight: '300',
   },
+  weatherInfoContainer: {
+    flexDirection: 'row',
+  },
   temperatureText: {
     textAlign: 'right',
     color: Colors.text,
     fontWeight: 'bold',
+    width: 44,
   },
   subtext: {
     textAlign: 'right',
     color: Colors.text,
-    fontSize: 12,
+    marginRight: 8,
     fontWeight: '300',
   },
   text: {

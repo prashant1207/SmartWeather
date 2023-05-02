@@ -1,5 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Settings} from '@src/types/Config';
+
 const kCities = 'CITIES';
+const kSettings = 'SETTINGS';
 
 export async function storeData(key: string, value: string): Promise<void> {
   try {
@@ -26,4 +29,12 @@ export async function storeCities(cities: string[]): Promise<void> {
 
 export async function getCities(): Promise<string[] | null> {
   return await getData<string[]>(kCities);
+}
+
+export async function storeSettings(settings: Settings): Promise<void> {
+  await storeData(kSettings, JSON.stringify(settings));
+}
+
+export async function getSettings(): Promise<Settings | null> {
+  return await getData<Settings>(kSettings);
 }
