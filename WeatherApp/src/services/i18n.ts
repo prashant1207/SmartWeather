@@ -12,10 +12,14 @@ export function getTranslation(): StringResource {
 }
 
 export const getLocale = () => {
-  return Platform.select({
-    ios:
-      NativeModules.SettingsManager.settings.AppleLocale ||
-      NativeModules.SettingsManager.settings.AppleLanguages[0],
-    android: NativeModules.I18nManager.localeIdentifier,
-  });
+  if (NativeModules.SettingsManager) {
+    return Platform.select({
+      ios:
+        NativeModules.SettingsManager.settings.AppleLocale ||
+        NativeModules.SettingsManager.settings.AppleLanguages[0],
+      android: NativeModules.I18nManager.localeIdentifier,
+    });
+  } else {
+    return 'en';
+  }
 };
