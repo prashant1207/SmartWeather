@@ -24,9 +24,18 @@ export function AppLocationProvider({
   const [location, setLocation] = React.useState<Location | undefined>();
   const [error, setError] = React.useState<string | undefined>(undefined);
 
+  const initialize = React.useCallback(() => {
+    const {NativeHelper} = NativeModules;
+    if (NativeHelper) {
+      NativeHelper.isLocationAuthorized((status: boolean) => {
+        setAuthorized(status);
+      });
+    }
+  }, []);
+
   React.useEffect(() => {
     initialize();
-  }, []);
+  }, [initialize]);
 
   React.useEffect(() => {
     if (authorized) {
@@ -42,21 +51,11 @@ export function AppLocationProvider({
         },
       );
     }
-  }, [authorized]);
+  }, [authorized, initialize]);
 
-  function refresh() {
-    console.log('called refresh');
+  const refresh = React.useCallback(() => {
     initialize();
-  }
-
-  function initialize() {
-    const {NativeHelper} = NativeModules;
-    if (NativeHelper) {
-      NativeHelper.isLocationAuthorized((status: boolean) => {
-        setAuthorized(status);
-      });
-    }
-  }
+  }, [initialize]);
 
   return (
     <AppLocationContext.Provider value={{authorized, location, refresh, error}}>

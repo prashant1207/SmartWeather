@@ -2,20 +2,14 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AddCityCard} from '@src/components/AddCityCard';
 import {LocationPermission} from '@src/components/LocationPermission';
 import {LocationWeather} from '@src/components/LocationWeather';
+import {UnitSwitcher} from '@src/components/UnitSwitcher';
 import {useAppLocation} from '@src/context/AppLocation';
 import {useConfig} from '@src/context/ConfigContext';
 import {Colors} from '@src/styles/Colors';
 import {City} from '@src/types/City';
 import {StackParamList} from '@src/types/StackParamList';
 import React from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  Switch,
-  FlatList,
-  SafeAreaView,
-} from 'react-native';
+import {StyleSheet, FlatList, SafeAreaView} from 'react-native';
 import {Weather} from 'weather-service';
 
 export function HomeScreen({
@@ -24,7 +18,6 @@ export function HomeScreen({
   const [items, setItems] = React.useState<City[]>([]);
   const {cities} = useConfig();
   const {authorized, location} = useAppLocation();
-
   const onPress = (weather: Weather, city: City) =>
     navigation.navigate('Detail', {
       weather,
@@ -70,35 +63,7 @@ export function HomeScreen({
   );
 }
 
-function UnitSwitcher(): JSX.Element {
-  const {settings, updateSetting} = useConfig();
-  const [isEnabled, setIsEnabled] = React.useState(settings.unit === 'metric');
-
-  const toggleSwitch = () => {
-    if (settings.unit === 'metric') {
-      setIsEnabled(false);
-      updateSetting({unit: 'imperial', temperatureUnit: '°F'});
-    } else {
-      setIsEnabled(true);
-      updateSetting({unit: 'metric', temperatureUnit: '°C'});
-    }
-  };
-  return (
-    <View style={styles.switchContainer}>
-      <Text style={styles.switchText}>{settings.unit}</Text>
-      <Switch
-        testID="unit-switch"
-        trackColor={{false: '#767577', true: '#81b0ff'}}
-        thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={toggleSwitch}
-        value={isEnabled}
-      />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   switchContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
